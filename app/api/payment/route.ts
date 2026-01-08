@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import Midtrans from "midtrans-client";
 import { ReservationProps } from "@/types/reservation";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const snap = new Midtrans.Snap({
-  isProduction: process.env.NODE_ENV === "production",
-  serverKey: process.env.MIDTRANS_SERVER_KEY,
-  clientKey: process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY,
+  isProduction: isProd,
+  serverKey: isProd ? process.env.MIDTRANS_SERVER_KEY_PROD : process.env.MIDTRANS_SERVER_KEY,
+  clientKey: isProd ? process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY_PROD : process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY,
 });
 
 export const POST = async (req: Request) => {
