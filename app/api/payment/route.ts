@@ -3,7 +3,7 @@ import Midtrans from "midtrans-client";
 import { ReservationProps } from "@/types/reservation";
 
 const snap = new Midtrans.Snap({
-  isProduction: false,
+  isProduction: true,
   serverKey: process.env.MIDTRANS_SERVER_KEY,
   clientKey: process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY,
 });
