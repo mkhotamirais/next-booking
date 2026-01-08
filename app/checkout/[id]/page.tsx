@@ -17,7 +17,11 @@ export default async function CheckoutId({ params }: { params: Promise<{ id: str
           <CheckoutDetail reservationId={reservationId} />
         </Suspense>
         <Script
-          src="https://app.midtrans.com/snap/snap.js"
+          src={
+            process.env.NODE_ENV === "production"
+              ? process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL_PROD
+              : process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL_DEV
+          }
           data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
           strategy="lazyOnload"
         />
