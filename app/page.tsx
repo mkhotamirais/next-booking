@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import Main from "@/components/Main";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
@@ -22,12 +23,7 @@ export default function Home() {
       {/* main */}
       <section>
         <h2>Room and Rates</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-        </div>
+        <Main />
       </section>
     </div>
   );
