@@ -7,7 +7,7 @@ export default function SigninGoogle({ redirectUrl }: { redirectUrl: string }) {
     <form
       action={async () => {
         "use server";
-        await signIn("google", { redirectTo: `/${redirectUrl || "/"}` });
+        await signIn("google", { redirectTo: redirectUrl ? `/${redirectUrl}` : `/` });
       }}
     >
       <Button className="flex items-center gap-1">
