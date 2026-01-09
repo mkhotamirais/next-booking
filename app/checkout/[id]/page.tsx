@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import CheckoutDetail from "./CheckoutDetail";
 import { Suspense } from "react";
 import Script from "next/script";
+import { getReservationById } from "@/actions/reservation";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Checkout",
@@ -9,6 +11,13 @@ export const metadata: Metadata = {
 
 export default async function CheckoutId({ params }: { params: Promise<{ id: string }> }) {
   const reservationId = (await params).id;
+
+  const reservation = await getReservationById(reservationId);
+
+  if (reservation?.Payment?.status === "paid") {
+    redirect(`/reservation/success?id=${reservationId}`);
+  }
+
   return (
     <section className="py-8">
       <div className="container">

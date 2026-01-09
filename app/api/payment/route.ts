@@ -14,8 +14,20 @@ export const POST = async (req: Request) => {
   const reservation: ReservationProps = await req.json();
 
   const parameter = {
-    transaction_details: { order_id: reservation.id, gross_amount: reservation.Payment?.amount || 0 },
-    credit_card: { secure: true },
+    transaction_details: {
+      order_id: `${reservation.id}-${Date.now()}`,
+      gross_amount: reservation.Payment?.amount || 0,
+    },
+    enabled_payments: ["qris"],
+    item_details: [
+      {
+        id: "res-1",
+        price: reservation.Payment?.amount,
+        quantity: 1,
+        name: "Booking Kamar/Meja - Bayar via Scan QRIS",
+      },
+    ],
+    // credit_card: { secure: true },
     customer_details: { first_name: reservation.User.name, email: reservation.User.email },
   };
 

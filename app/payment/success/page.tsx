@@ -25,7 +25,7 @@ export default async function PaymentSuccess({
         <p>Thank you for completing your secure online payment.</p>
         <p>Have a great day!</p>
         <div>
-          <Link href="/myreservation" className="btn">
+          <Link href="/my-reservation" className="btn">
             Go to my reservation
           </Link>
         </div>
